@@ -37,6 +37,7 @@
 
 <body>
 <div>
+  <button onclick="sendMessage({action: 'BUTTON_EVENT', version: '1.0', data: 'random data'})">Send event</button>
   <span>Messages received:</span>
   <pre id='content'></pre>
 </div>
