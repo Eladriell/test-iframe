@@ -47,7 +47,7 @@ class DemoComponentNoContent extends HTMLElement {
                 break;
             case 'data-test':
                 this.data = newVal;
-                console.log(`[DemoComponent] Value from dataset: `, this.dataset?.test);
+                console.log(`[DemoComponent] Value from dataset: `, JSON.stringify(this.dataset?.test));
                 break;
         }
 
