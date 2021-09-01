@@ -13,7 +13,7 @@ class DemoComponentNoContent extends HTMLElement {
     contentNode;
 
     static get observedAttributes() {
-        return ['cartId']
+        return ['cart-id']
     }
 
     constructor() {
@@ -29,7 +29,16 @@ class DemoComponentNoContent extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
-        this[name] = newVal;
+        if (oldVal === newVal) {
+            return;
+        }
+
+        switch(name) {
+            case 'cart-id':
+                this.cartId = newVal;
+                break;
+        }
+
         console.log(`[DemoComponent] New value for attribute '${name}': ${oldVal} => ${newVal}`);
     }
 
