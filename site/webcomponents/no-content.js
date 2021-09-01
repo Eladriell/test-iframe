@@ -16,7 +16,7 @@ class DemoComponentNoContent extends HTMLElement {
     creationTime = Date.now();
 
     static get observedAttributes() {
-        return ['cart-id']
+        return ['cart-id', 'data-test']
     }
 
     constructor() {
