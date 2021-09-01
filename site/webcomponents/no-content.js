@@ -9,6 +9,8 @@ demoComponentNoContentTemplate.innerHTML = `
 
 class DemoComponentNoContent extends HTMLElement {
 
+    root;
+
     cartId;
 
     contentNode;
@@ -23,10 +25,10 @@ class DemoComponentNoContent extends HTMLElement {
 
     constructor() {
         super();
-        const root = this.attachShadow({ mode: "open" });
-        root.appendChild(demoComponentNoContentTemplate.content.cloneNode(true));
-        this.contentNode = root.getElementById('cart-id');
-        root.getElementById('button').onclick = () => this.onClick();
+        this.root = this.attachShadow({ mode: "open" });
+        this.root.appendChild(demoComponentNoContentTemplate.content.cloneNode(true));
+        this.contentNode = this.root.getElementById('cart-id');
+        this.root.getElementById('button').onclick = () => this.onClick();
     }
 
     connectedCallback() {
