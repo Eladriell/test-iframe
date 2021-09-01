@@ -39,6 +39,7 @@ class DemoComponentNoContent extends HTMLElement {
                 break;
         }
 
+        this.render();
         console.log(`[DemoComponent] New value for attribute '${name}': ${oldVal} => ${newVal}`);
     }
 
