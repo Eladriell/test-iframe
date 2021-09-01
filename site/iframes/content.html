@@ -23,7 +23,7 @@
                             sendMessage({action: 'HANDSHAKE_CHILD', version: '1.0', id: event.data.id});
                             break;
                         case 'CART_DATA':
-                            document.getElementById('content').innerHTML = getContent(event.data);
+                            document.getElementById('content').innerHTML = JSON.stringify(event.data);
                             break;
                     }
                 });
