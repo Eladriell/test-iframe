@@ -19,7 +19,7 @@ class DemoComponentNoContent extends HTMLElement {
     constructor() {
         super();
         const root = this.attachShadow({ mode: "open" });
-        this.appendChild(demoComponentNoContentTemplate.content.cloneNode(true));
+        root.appendChild(demoComponentNoContentTemplate.content.cloneNode(true));
         this.contentNode = root.getElementById('cart-id');
     }
 
