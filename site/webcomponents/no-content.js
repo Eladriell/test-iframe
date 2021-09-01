@@ -1,8 +1,9 @@
 const demoComponentNoContentTemplate = document.createElement('template');
 demoComponentNoContentTemplate.innerHTML = `
 <div>
-  <span>Web component!</span>
-  <span>Current cart ID is: <span id="cart-id"></span></span>
+  <div>Web component!</div>
+  <div>Current cart ID is: <span id="cart-id"></span></div>
+  <div><button id="button">Send event</button></div>
 </div>
 `;
 
@@ -11,6 +12,8 @@ class DemoComponentNoContent extends HTMLElement {
     cartId;
 
     contentNode;
+
+    creationTime = Date.now();
 
     static get observedAttributes() {
         return ['cart-id']
@@ -21,6 +24,7 @@ class DemoComponentNoContent extends HTMLElement {
         const root = this.attachShadow({ mode: "open" });
         root.appendChild(demoComponentNoContentTemplate.content.cloneNode(true));
         this.contentNode = root.getElementById('cart-id');
+        root.getElementById('button').onclick = () => this.onClick();
     }
 
     connectedCallback() {
@@ -45,6 +49,10 @@ class DemoComponentNoContent extends HTMLElement {
 
     render() {
         this.contentNode.innerText = this.cartId || 'None';
+    }
+
+    onClick() {
+        this.dispatchEvent(new CustomEvent('someEvent', `I've been alive for ${Math.floor((this.creationTime - Date.now()) / 1000)}s!`));
     }
 }
 
