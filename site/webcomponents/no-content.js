@@ -21,6 +21,7 @@ class DemoComponentNoContent extends HTMLElement {
 
     set cart(cart) {
         this._cart = cart;
+        console.log(`[DemoComponent] received cart data: `, cart);
         this.render();
     }
 
