@@ -20,7 +20,7 @@ class DemoComponentNoContent extends HTMLElement {
         super();
         const root = this.attachShadow({ mode: "open" });
         this.appendChild(demoComponentNoContentTemplate.content.cloneNode(true));
-        this.contentNode = root.getElementById('cartId');
+        this.contentNode = root.getElementById('cart-id');
     }
 
     connectedCallback() {
