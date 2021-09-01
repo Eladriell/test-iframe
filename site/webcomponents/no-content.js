@@ -15,6 +15,8 @@ class DemoComponentNoContent extends HTMLElement {
 
     creationTime = Date.now();
 
+    data;
+
     static get observedAttributes() {
         return ['cart-id', 'data-test']
     }
@@ -40,6 +42,10 @@ class DemoComponentNoContent extends HTMLElement {
         switch(name) {
             case 'cart-id':
                 this.cartId = newVal;
+                break;
+            case 'data-test':
+                this.data = newVal;
+                console.log(`[DemoComponent] Value from dataset: `, this.root.dataset.test);
                 break;
         }
 
