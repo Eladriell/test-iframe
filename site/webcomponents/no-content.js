@@ -29,4 +29,4 @@ class DemoComponentNoContent extends HTMLElement {
     }
 }
 
-window.customElements.define('demo-component', DemoComponentNoContent);
+window.customElements.define('demo-component-no-content', DemoComponentNoContent);
