@@ -1,0 +1,44 @@
+<html>
+<head>
+    <script>
+        let channelId = undefined;
+
+        function sendMessage(message) {
+            window.parent.postMessage({...message, channelId}, '*');
+        }
+
+        function getContent(cart) {
+            return cart ? `
+            <div>Cart ID: ${cart.id}</div>
+            ` : `You don't have a cart yet.`
+        }
+
+        try {
+            if (window.parent) {
+                window.addEventListener('message', (event) => {
+
+                    switch (event.data.action) {
+                        case 'HANDSHAKE_PARENT':
+                            channelId = event.data.channelId;
+                            sendMessage({action: 'HANDSHAKE_CHILD', version: '1.0', id: event.data.id});
+                            break;
+                        case 'CART_DATA':
+                            document.getElementById('content').innerHTML = getContent(event.data);
+                            break;
+                    }
+                });
+            }
+        } catch (e) {
+            console.error('Cant access parent window');
+        }
+    </script>
+</head>
+
+<body>
+<div>
+    <h3>Some basic information on your Cart:</h3>
+    <div id="content"></div>
+    <button onclick="sendMessage({action: 'CLOSE', version: '1.0'})">Close</button>
+</div>
+</body>
+</html>
