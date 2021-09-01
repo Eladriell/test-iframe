@@ -17,7 +17,14 @@ class DemoComponentNoContent extends HTMLElement {
 
     creationTime = Date.now();
 
-    data;
+    _cart;
+
+    set cart(cart) {
+        this._cart = cart;
+        this.render();
+    }
+
+    get cart() {return this._cart}
 
     static get observedAttributes() {
         return ['cart-id', 'data-test']
@@ -44,10 +51,6 @@ class DemoComponentNoContent extends HTMLElement {
         switch(name) {
             case 'cart-id':
                 this.cartId = newVal;
-                break;
-            case 'data-test':
-                this.data = newVal;
-                console.log(`[DemoComponent] Value from dataset: `, JSON.stringify(this.dataset?.test));
                 break;
         }
 
