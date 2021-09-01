@@ -52,7 +52,9 @@ class DemoComponentNoContent extends HTMLElement {
     }
 
     onClick() {
-        this.dispatchEvent(new CustomEvent('someEvent', `I've been alive for ${Math.floor((this.creationTime - Date.now()) / 1000)}s!`));
+        this.dispatchEvent(new CustomEvent('someEvent', {
+            detail: `I've been alive for ${Math.floor((this.creationTime - Date.now()) / 1000)}s!`
+        }));
     }
 }
 
