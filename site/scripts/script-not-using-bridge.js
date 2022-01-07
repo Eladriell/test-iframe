@@ -9,8 +9,6 @@ function getDisplayablePiece(cartId) {
 </div>`;
 }
 
-let cartId;
-
 function registerCartId(cartId) {
     cartId = cartId;
     console.log(`iFrame received cart ID: ${cartId}`);
