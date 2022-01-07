@@ -4,7 +4,8 @@ function interactWithScript() {
 
 function getDisplayablePiece(cartId) {
     return `<div>
-    <h2>Content from partner's script</h2>
+    <h3>Content from partner's script</h3>
+    <div>NOT manipulating the Bridge</div>
     <div>Cart ID is: ${cartId}</div>
 </div>`;
 }
