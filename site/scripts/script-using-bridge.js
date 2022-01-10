@@ -21,6 +21,7 @@ function registerCartId(cartId) {
 
 
 BRIDGE.register((message) => {
+    console.log(`[iFrame] received from bridge: ${message.action}`);
     switch (message.action) {
         case 'EXPECT_RESPONSE':
             BRIDGE.sendMessage({action: 'INTERACTION_RESPONSE', version: '1.0', id: message.id, data: interactWithScript()});
