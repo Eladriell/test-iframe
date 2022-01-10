@@ -10,13 +10,24 @@ function getDisplayablePiece(cartId) {
 </div>`;
 }
 
-function registerCartId(cartId) {
-    cartId = cartId;
-    console.log(`iFrame received cart ID: ${cartId}`);
+let cartId;
 
-    setTimeout(() => {
-        BRIDGE.sendMessage({action: 'SHOW_TEASER', version: '1.0', data: getDisplayablePiece(cartId)});
-    }, 3000)
+function registerCart(cart) {
+    if (cartId != cart.id) {
+        cartId = cart.id;
+        console.log(`[iFrame] register new cart ID: ${cartId}`);
+
+        setTimeout(() => {
+            BRIDGE.sendMessage({action: 'SHOW_TEASER', version: '1.0', data: getDisplayablePiece(cartId)});
+        }, 3000);
+    }
+
+    const emailAddress = cart && cart.contacts && cart.contacts.find((contact) => contact.contactType === 'Email');
+    if (emailAddress) {
+        console.log(`[iFrame] cart now contains an email address: ${emailAddress.address}`);
+        // do something with this new data
+    }
+
 }
 
 
@@ -27,7 +38,8 @@ BRIDGE.register((message) => {
             BRIDGE.sendMessage({action: 'INTERACTION_RESPONSE', version: '1.0', id: message.id, data: interactWithScript()});
             break;
         case 'SHOPPING_CART':
-            registerCartId(message.data.id);
+            console.log('[iFrame] received Cart: ', message.data);
+            registerCartId(message.data);
             break;
         default:
             console.warn('IFrame received unsupported action ' + message.action);
