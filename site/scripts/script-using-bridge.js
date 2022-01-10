@@ -39,7 +39,7 @@ BRIDGE.register((message) => {
             break;
         case 'SHOPPING_CART':
             console.log('[iFrame] received Cart: ', message.data);
-            registerCartId(message.data);
+            registerCart(message.data);
             break;
         default:
             console.warn('IFrame received unsupported action ' + message.action);
