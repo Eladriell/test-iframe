@@ -38,8 +38,8 @@ function onLeaveIntent() {
         const destination = bounds[0].destinationLocation;
 
         const content = `<h2>Are your leaving us?</h2>
-<p>Don't want to finish your booking from ${origin.cityCode} (${origin.airportName}) to ${destination.cityCode} (${destination.airportName}) now?</p>
-<p>You will be reminded later by email at ${userEmail} so you can resume from where you left!</p>
+<p>Don't want to finish your booking from <span class="emphasize">${origin.cityCode} (${origin.airportName})</span> to <span class="emphasize">${destination.cityCode} (${destination.airportName})</span> now?</p>
+<p>You will be reminded later by email at <span class="emphasize">${userEmail}</span> so you can resume from where you left!</p>
 `;
         BRIDGE.sendMessage({action: 'SHOW_TEASER', version: '1.0', data: content});
     }
