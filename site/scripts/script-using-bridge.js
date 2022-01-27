@@ -13,12 +13,12 @@ function getDisplayablePiece(cart) {
 let userCart;
 let userEmail;
 
-function registerCart(cart) {
+function processCart(cart) {
     if (!userCart || userCart.id != cart.id) {
-        console.log(`[Bridge][3rd party] register new cart ID: ${userCart.id}`);
+        console.log(`[Bridge][3rd party] register new cart ID: ${cart.id}`);
 
         setTimeout(() => {
-            BRIDGE.sendMessage({action: 'SHOW_TEASER', version: '1.0', data: getDisplayablePiece(userCart)});
+            BRIDGE.sendMessage({action: 'SHOW_TEASER', version: '1.0', data: getDisplayablePiece(cart)});
         }, 3000);
     }
     userCart = cart;
@@ -53,7 +53,7 @@ BRIDGE.register((message) => {
             break;
         case 'SHOPPING_CART':
             console.log('[Bridge][3rd party] received Cart: ', message.data);
-            registerCart(message.data);
+            processCart(message.data);
             break;
         case 'LEAVE_INTENT':
             onLeaveIntent();
