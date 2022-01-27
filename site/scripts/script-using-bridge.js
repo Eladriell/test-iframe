@@ -45,9 +45,8 @@ function onLeaveIntent() {
     }
 }
 
-
 BRIDGE.register((message) => {
-    console.log(`[Bridge][3rt party] received from bridge: ${message.action}`);
+    console.log(`[Bridge][3rd party] received from bridge: ${message.action}`);
     switch (message.action) {
         case 'EXPECT_RESPONSE':
             BRIDGE.sendMessage({action: 'INTERACTION_RESPONSE', version: '1.0', id: message.id, data: interactWithScript()});
