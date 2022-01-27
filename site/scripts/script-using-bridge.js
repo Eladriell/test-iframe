@@ -15,18 +15,18 @@ let userEmail;
 
 function registerCart(cart) {
     if (!userCart || userCart.id != cart.id) {
-        userCart = cart;
-        console.log(`[Bridge][3rt party] register new cart ID: ${userCart.id}`);
+        console.log(`[Bridge][3rd party] register new cart ID: ${userCart.id}`);
 
         setTimeout(() => {
             BRIDGE.sendMessage({action: 'SHOW_TEASER', version: '1.0', data: getDisplayablePiece(userCart)});
         }, 3000);
     }
+    userCart = cart;
 
     const emailAddress = cart && cart.contacts && cart.contacts.find((contact) => contact.contactType === 'Email');
     if (emailAddress && userEmail != emailAddress.address) {
         userEmail = emailAddress.address;
-        console.log(`[Bridge][3rt party] cart now contains an email address: ${userEmail}`);
+        console.log(`[Bridge][3rd party] cart now contains an email address: ${userEmail}`);
         // do something with this new data
     }
 }
@@ -52,13 +52,13 @@ BRIDGE.register((message) => {
             BRIDGE.sendMessage({action: 'INTERACTION_RESPONSE', version: '1.0', id: message.id, data: interactWithScript()});
             break;
         case 'SHOPPING_CART':
-            console.log('[Bridge][3rt party] received Cart: ', message.data);
+            console.log('[Bridge][3rd party] received Cart: ', message.data);
             registerCart(message.data);
             break;
         case 'LEAVE_INTENT':
             onLeaveIntent();
             break;
         default:
-            console.warn('[Bridge][3rt party] received unsupported action ' + message.action);
+            console.warn('[Bridge][3rd party] received unsupported action ' + message.action);
     }
 }, true);
